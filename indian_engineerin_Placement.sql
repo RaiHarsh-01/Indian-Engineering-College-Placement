@@ -121,46 +121,11 @@ select student_id, rank() over(order by cgpa desc ), branch, cgpa from indian_en
 select student_id, branch, cgpa, avg(cgpa) over(order BY branch) as branch_avg_cgpa, 
 cgpa - avg(cgpa) over(order BY branch) as cgpa_diff from indian_engineering_student_placement;
 
-24. Use a `CASE` statement to label students as 'High Stress' if `stress_level` is , 'Medium' if between  and , and 'Low' otherwise.
 
-25. Using Window Functions, find the top  highest-paid students in every `branch`.
-select max(p.salary_lpa), i.branch from indian_engineering_student_placement i join placement_targets p 
-on i.Student_ID = p.Student_ID group by branch ;
+24. Using Window Functions, find the top  highest-paid students in every `branch`.
 
-select max(p.salary_lpa) over(order by i.branch), i.student_id, i.branch from 
-indian_engineering_student_placement i join placement_targets p 
-on i.Student_ID = p.Student_ID group by student_id ;
+with StudentRanks as (select student_id, branch, salary,
+        dense_rank() over (partition by branch order by salary desc) as salary_rank
+    from indian_engineering_student_placement
+) select student_name, branch, salary from StudentRanks where salary_rank = 1;
 
-WITH StudentRanks AS (
-    SELECT 
-        student_id, 
-        branch, 
-        salary,
-        DENSE_RANK() OVER (PARTITION BY branch ORDER BY salary DESC) as salary_rank
-    FROM indian_engineering_student_placement
-)
-SELECT 
-    student_name, 
-    branch, 
-    salary
-FROM StudentRanks
-WHERE salary_rank = 1;
-
-26. Identify students whose `cgpa` is higher than the global average `cgpa` of all 'Placed' students.
-select i.student_id, i.cgpa- avg(i.cgpa) over()as Diff_XX from indian_engineering_student_placement i
-join placement_targets p on i.Student_ID = p.Student_ID where  p.placement_status = 'Placed';
-
-27. **Skills vs. Pay:** Write a query to compare the average `salary_lpa` for each `coding_skill_rating` (1 to 5) to see if higher ratings lead to higher pay.
-28. **Placement Rate Report:** Generate a report showing `branch`, the total number of students, and the "Placement Rate" (Placed Students / Total Students).
-29. **Unrealized Potential:** Find students who have 'High' `extracurricular_involvement` and a `coding_skill_rating` of  but are currently 'Not Placed'.
-30. **Underpaid Experts:** List students who have a `coding_skill_rating` above the branch average but are receiving a `salary_lpa` below the branch average.
-
-==============================================================================================================================
-
-qus-1- Rank Students by CGPA within each Branch Write a query to rank students based on their cgpa within each 
-branch in descending order. Use RANK() so that students with the same CGPA receive the same rank.
-
-select Rank() over(Partition by branch order by cgpa), branch from indian_engineering_student_placement;
-
-qus-2- Compare Individual CGPA to Branch Average
-For every student, display their Student_ID, branch, cgpa, and the average CGPA of their respective branch.

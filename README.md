@@ -1,2 +1,10 @@
 # Indian-Engineering-College-Placement
-Analyze Indian Engineering College Placement trends with this comprehensive SQL project. Using a real-world Kaggle dataset, this repository provides structured solutions to 24 challenges that scale from foundational basics to complex analytical techniques. Master essential skills including multi-table joins, subqueries, Common Table Expressions (CTEs), and advanced Window Functions. Perfect for anyone looking to see how SQL uncovers deep insights into student demographics, academic performance, and recruitment patterns within the competitive landscape of Indian technical education.
+This repository offers a data-driven exploration of Indian Engineering College Placement trends through 24 structured SQL challenges. 🎓 Utilizing a comprehensive dataset from Kaggle, the project serves as a progressive roadmap that bridges the gap between basic queries and professional-grade data analysis. 🚀
+
+The collection is organized into three distinct difficulty tiers:
+
+Basics: Mastering data retrieval, filtering, and essential aggregations to understand student demographics. 📊
+Intermediate: Implementing complex joins and subqueries to link academic performance with hiring outcomes. 🔗
+Advanced: Utilizing CTEs and Window Functions to rank colleges and identify year-over-year recruitment growth. 🏆
+
+By solving these 24 problems, you gain deep insights into the factors driving campus recruitment in India—from branch-specific trends to the direct impact of CGPA on salary packages. 💰 It is a robust portfolio piece for anyone looking to master SQL in a real-world context. 💻✨
